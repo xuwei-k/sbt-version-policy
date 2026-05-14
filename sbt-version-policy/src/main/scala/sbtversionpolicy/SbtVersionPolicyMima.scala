@@ -45,7 +45,7 @@ object SbtVersionPolicyMima extends AutoPlugin {
     // So we're using the usual default repositories from coursier here…
     val fullRepos = coursierapi.Repository.defaults().asScala ++ repos
     val res = coursierapi.Versions.create()
-      .withRepositories(fullRepos: _*)
+      .withRepositories(fullRepos*)
       .withModule(coursierapi.Module.of(projId.organization, name))
       .versions()
     res.getMergedListings().getAvailable().asScala.toSeq

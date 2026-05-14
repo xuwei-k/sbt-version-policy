@@ -47,7 +47,7 @@ object Resolvers {
 
   // this handles whitespace in path
   private def pathToUriString(path: String): String = {
-    "file://" + path.replaceAllLiterally(" ", "%20")
+    "file://" + path.replace(" ", "%20")
   }
 
   private def substituteProperties(properties: Map[String, String], input: String): String =
@@ -93,7 +93,7 @@ object Resolvers {
 
   private object IBiblioRepository {
 
-    private def stringVector(v: java.util.List[_]): Vector[String] =
+    private def stringVector(v: java.util.List[?]): Vector[String] =
       Option(v).map(_.asScala.toVector).getOrElse(Vector.empty).collect {
         case s: String => s
       }

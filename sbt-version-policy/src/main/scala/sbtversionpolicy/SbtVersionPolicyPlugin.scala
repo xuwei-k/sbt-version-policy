@@ -8,7 +8,7 @@ object SbtVersionPolicyPlugin extends AutoPlugin {
   override def trigger = allRequirements
   override def requires = MimaPlugin
 
-  private def mimaIgnoreVersion(version: String): Seq[Def.Setting[_]] =
+  private def mimaIgnoreVersion(version: String): Seq[Def.Setting[?]] =
     Def.settings(
       MimaPlugin.autoImport.mimaPreviousArtifacts := {
         val value = MimaPlugin.autoImport.mimaPreviousArtifacts.value
@@ -20,7 +20,7 @@ object SbtVersionPolicyPlugin extends AutoPlugin {
     val VersionCompatibility = coursier.version.VersionCompatibility
     val Compatibility = sbtversionpolicy.Compatibility
     type Compatibility = sbtversionpolicy.Compatibility
-    def versionPolicyIgnoreVersion(version: String): Seq[Def.Setting[_]] =
+    def versionPolicyIgnoreVersion(version: String): Seq[Def.Setting[?]] =
       SbtVersionPolicyPlugin.mimaIgnoreVersion(version)
   }
 
